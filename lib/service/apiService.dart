@@ -8,12 +8,9 @@ import 'package:flutter_oss_aliyun/flutter_oss_aliyun.dart';
 import 'package:qiniu_flutter_sdk/qiniu_flutter_sdk.dart';
 
 class ApiService extends WebService {
-  static Future login(
-      String username, String password, String inviteCode) async {
+  static Future login(String username) async {
     Map params = {};
     params['mobile'] = username;
-    params['password'] = password;
-    params['inviteCode'] = inviteCode;
 
     if (Platform.isAndroid) {
       params['clientostype'] = "android";

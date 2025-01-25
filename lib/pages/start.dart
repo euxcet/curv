@@ -32,9 +32,9 @@ class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
               color: Colors.white,
             ),
           ),
-          systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+          systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
               statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark)),
+              statusBarIconBrightness: Brightness.light)),
       body: Container(
         width: double.infinity,
         height: double.infinity,

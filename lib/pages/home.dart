@@ -34,14 +34,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   final List<Map> _tabs = [
     {
-      "name": "首页",
-      "icon": "images/tabs/ai.png",
-      "selectedIcon": "images/tabs/ai_sel.png",
+      "name": "CURV",
+      "icon": "images/tabs/feather.png",
+    },
+    {
+      "name": "活动",
+      "icon": "images/tabs/slack.png",
+    },
+    {
+      "name": "数据",
+      "icon": "images/tabs/trendin.png",
     },
     {
       "name": "我的",
-      "icon": "images/tabs/mine.png",
-      "selectedIcon": "images/tabs/mine_sel.png",
+      "icon": "images/tabs/user.png",
     },
   ];
   late Map _selectedTab;
@@ -184,9 +190,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             child: Column(
                               children: [
                                 Image.asset(
-                                  _currentIndex == index
-                                      ? e["selectedIcon"]
-                                      : e["icon"],
+                                  e["icon"],
                                   width: size,
                                   color: _currentIndex == index
                                       ? AppConfig.mainColor

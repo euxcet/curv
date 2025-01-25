@@ -95,411 +95,58 @@ class _HomeTabViewPageState extends State<HomeTabViewPage>
         80;
 
     return Scaffold(
-        backgroundColor: Color(0xfff8f8f8),
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.dark
+          foregroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.light
               .copyWith(statusBarColor: Colors.transparent),
           // title: Text(user != null ? user["nickname"] : "",style:TextStyle(color: Colors.white),),
           centerTitle: true,
           elevation: 0.0,
-          toolbarHeight: 50,
-          title: Row(
+          toolbarHeight: 0,
+        ),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/scan.png"), fit: BoxFit.cover),
+          ),
+          child: Column(
             children: [
-              MyText(
-                title: "茧化",
-                weight: FontWeight.bold,
-              ),
-              const SizedBox(width: 5),
-              Expanded(
-                  child: Container(
-                height: 35,
-                padding: EdgeInsets.only(left: 10),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.search,
-                      color: AppConfig.font3,
+                    SizedBox(height: 50),
+                    Row(
+                      children: [
+                        Image.asset(
+                          "images/sun.png",
+                          width: 20,
+                          height: 20,
+                        ),
+                        SizedBox(width: 10),
+                        MyText(
+                          title: "紫外线较强",
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 4),
+                    SizedBox(height: 10),
                     MyText(
-                      title: "搜素",
-                      color: AppConfig.font3,
+                      title: "CURV，美一刻",
+                      color: Colors.white,
+                      fontSize: 26,
                     )
                   ],
                 ),
-              )),
+              )
             ],
           ),
-          actions: [
-            MyButton(
-              "上传视频",
-              onTap: () {
-                AppUtil.getTo(DeployPage());
-              },
-            ),
-            SizedBox(
-              width: 15,
-            )
-          ],
-        ),
-        body: SingleChildScrollView(
-          physics: new BouncingScrollPhysics(),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-                margin: AppUtil.getCommonPadding(),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "绘画",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/caipu.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                              SizedBox(width: 5),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/biaobai.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )))
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                    SizedBox(width: 10),
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "聊天",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/quming.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                  ],
-                )),
-            Container(
-                margin: AppUtil.getCommonPadding(),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "数字人",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/shenghuo.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                              SizedBox(width: 5),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {},
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/zongjie.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )))
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                    SizedBox(width: 10),
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "ai视频-无限想象",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/shici.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                              SizedBox(width: 5),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-
-                                        // AppUtil.getTo(AIDrawPage());
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/zuowen.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )))
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                  ],
-                )),
-            Container(
-                margin: AppUtil.getCommonPadding(),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "换脸-娱乐",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/duilian.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                              SizedBox(width: 5),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/fayan.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )))
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                    SizedBox(width: 10),
-                    Expanded(
-                        child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            title: "生成音乐",
-                            weight: FontWeight.bold,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/qingjia.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ))),
-                              SizedBox(width: 5),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        // EasyLoading.showToast("内测中，暂未开放!");
-                                      },
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          child: Image.asset(
-                                            "images/cates/qinghua.jpg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )))
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                  ],
-                ))
-          ]),
         ));
   }
 }

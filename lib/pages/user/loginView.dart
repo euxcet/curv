@@ -24,12 +24,10 @@ class LoginViewPage extends StatefulWidget {
 class _LoginViewPageState extends State<LoginViewPage> {
   final FocusNode _focusNodeUserName = FocusNode();
   final FocusNode _focusNodePassWord = FocusNode();
-  final FocusNode _inviteNode = FocusNode();
 
   //用户名输入框控制器，此控制器可以监听用户名输入框操作
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _passWordController = TextEditingController();
-  final TextEditingController _inviteController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
 
   //表单状态
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -106,7 +104,7 @@ class _LoginViewPageState extends State<LoginViewPage> {
     // 移除焦点监听
     _focusNodeUserName.removeListener(_focusNodeListener);
     _focusNodePassWord.removeListener(_focusNodeListener);
-    _userNameController.dispose();
+    _phoneController.dispose();
     if (_timer != null) {
       _timer!.cancel();
     }
@@ -182,11 +180,11 @@ class _LoginViewPageState extends State<LoginViewPage> {
       },
     );
 
-    if (_userNameController.text.isEmpty) {
+    if (_phoneController.text.isEmpty) {
       EasyLoading.showError("请输入手机号");
       return;
     }
-    ApiService.sendCode(_userNameController.text).then((value) {
+    ApiService.sendCode(_phoneController.text).then((value) {
       print("value");
       _rightCode = value["vcode"];
       debugPrint("_rightCode==" + _rightCode);
@@ -199,12 +197,12 @@ class _LoginViewPageState extends State<LoginViewPage> {
     //点击登录按钮，解除焦点，回收键盘
     _focusNodePassWord.unfocus();
     _focusNodeUserName.unfocus();
-    if (_userNameController.text.isEmpty) {
+    if (_phoneController.text.isEmpty) {
       EasyLoading.showError("请输入手机号");
       return;
     }
 
-    if (_passWordController.text.isEmpty) {
+    if (_codeController.text.isEmpty) {
       EasyLoading.showError("请输入验证码");
       return;
     }
@@ -213,15 +211,14 @@ class _LoginViewPageState extends State<LoginViewPage> {
       Message.info("请阅读并同意用户协议");
       return;
     }
-    ApiService.login(_userNameController.text, _passWordController.text,
-            _inviteController.text)
-        .then((value) {
-      StorageUtil.saveUser(value);
-      // ApiServic
-      EasyLoading.showSuccess("登录成功");
-    }).catchError((e) {
-      EasyLoading.showError("系统错误");
-    });
+    AppUtil.getTo(HomePage());
+    // ApiService.login(_phoneController.text).then((value) {
+    //   StorageUtil.saveUser(value);
+    //   // ApiServic
+    //   EasyLoading.showSuccess("登录成功");
+    // }).catchError((e) {
+    //   EasyLoading.showError("系统错误");
+    // });
   }
 
   void registerHandler() {}
@@ -257,7 +254,8 @@ class _LoginViewPageState extends State<LoginViewPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
+            Expanded(
+                child: Container(
               padding: EdgeInsets.all(20),
               child: SingleChildScrollView(
                   child: Column(
@@ -303,8 +301,11 @@ class _LoginViewPageState extends State<LoginViewPage> {
                           color: const Color(0xffFAFAFA),
                           borderRadius: BorderRadiusDirectional.circular(0)),
                       child: TextField(
-                        controller: _userNameController,
+                        controller: _phoneController,
                         focusNode: _focusNodeUserName,
+                        onChanged: (value) {
+                          setState(() {});
+                        },
                         decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: "请输入手机号",
@@ -338,33 +339,42 @@ class _LoginViewPageState extends State<LoginViewPage> {
                         children: [
                           Expanded(
                               child: TextField(
-                            controller: _passWordController,
+                            controller: _codeController,
+                            onChanged: (value) {
+                              setState(() {});
+                            },
                             focusNode: _focusNodePassWord,
                             decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "请输入验证码",
                                 hintStyle: TextStyle(color: Color(0xff999999))),
                           )),
-                          MyButton(
-                              (seconds == 60
-                                  ? "发送验证码"
-                                  : (seconds.toString() + "秒")),
-                              fontSize: 13,
-                              width: 100,
-                              backgroundColor: 0xff000000,
-                              radius: 0,
-                              onTap: sendCodeHandler)
+                          InkWell(
+                            onTap: () {
+                              loginHandler();
+                            },
+                            child: Container(
+                                width: 100,
+                                height: 30,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(0),
+                                    color: Color(0xff000000)),
+                                child: MyText(
+                                  title: "发送验证码",
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                )),
+                          ),
                         ],
                       )),
                   SizedBox(height: 50),
                 ],
               )),
-            ),
-            Spacer(),
+            )),
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20),
-              height: 300,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -386,7 +396,10 @@ class _LoginViewPageState extends State<LoginViewPage> {
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(0),
-                            color: Color(0xffD9D9D9)),
+                            color: Color(_phoneController.text.isEmpty ||
+                                    _codeController.text.isEmpty
+                                ? 0xffD9D9D9
+                                : 0xff000000)),
                         child: MyText(
                           title: "登录",
                           fontSize: 18,

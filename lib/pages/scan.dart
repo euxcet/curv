@@ -28,9 +28,9 @@ class _ScanPageState extends State<ScanPage> with TickerProviderStateMixin {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
           leading: Container(),
-          systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+          systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
               statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark)),
+              statusBarIconBrightness: Brightness.light)),
       body: Container(
         width: double.infinity,
         height: double.infinity,

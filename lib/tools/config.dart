@@ -25,7 +25,7 @@ class AppConfig {
   static const Color font1 = Color(0xff222222);
   static const Color font2 = Color(0xff666666);
   static const Color font3 = Color(0xff999999);
-  static const Color mainColor = Color(0xffAEA0FF);
+  static const Color mainColor = Color(0xff000000);
   static const Color blue = Color(0xff6980ff);
   static double messageLatestHeight = Platform.isIOS ? 135 : 120;
   static const double bottomBarHeight = 49;
