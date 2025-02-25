@@ -228,10 +228,26 @@ class Api2Service extends Web2Service {
     return Web2Service.post("/config", {});
   }
 
-  static Future queryFigure3D() async {
+  static Future queryTodays() async {
     Map params = {};
-    List res = await Web2Service.post("/figure3d/query", params);
-    return Figure3D.toList(res);
+    // List res = await Web2Service.post("/figure3d/query", params);
+    // return Figure3D.toList(res);
+    return [
+      {
+        "title": "你跑了3km，达成了今日有氧目标！",
+        "type": 1,
+        "kilo": 3,
+        "hot": 300,
+        "time": 30,
+      },
+      {
+        "title": "你跑了3km，达成了今日有氧目标！",
+        "type": 1,
+        "kilo": 3,
+        "hot": 300,
+        "time": 30,
+      }
+    ];
   }
 
   static Future queryFigure() async {

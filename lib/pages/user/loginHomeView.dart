@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:curv/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:curv/pages/user/loginView.dart';
@@ -201,10 +202,14 @@ class _LoginHomeViewPageState extends State<LoginHomeViewPage> {
                           )),
                     ),
                     SizedBox(height: 10),
-                    MyText(
-                      title: "暂时跳过",
-                      color: Color(0xff999999),
-                    ),
+                    TextButton(
+                        onPressed: () {
+                          AppUtil.getTo(HomePage());
+                        },
+                        child: MyText(
+                          title: "暂时跳过",
+                          color: Color(0xff999999),
+                        )),
                     const SizedBox(height: 40),
                   ],
                 ),

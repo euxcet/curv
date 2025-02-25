@@ -38,16 +38,5 @@ return;
 
 
 
-webrtc不用管
+https://www.figma.com/design/fT4uXUQjJGPfhboW3kfJYE/CURV_App_V1?node-id=0-1&t=26D2Mo7rXRQkASJK-1
 
-主要包括基本的
-
-登录（含第三方登录）
-
-日历选择
-
-云存储视频 下拉功能
-
-然后微信支付
-
-支付宝支付

@@ -15,7 +15,6 @@ import 'package:curv/service/api2Service.dart';
 import 'package:curv/tools/AppUtil.dart';
 import 'package:curv/tools/config.dart';
 import 'package:curv/tools/storage.dart';
-import 'package:flutter_svg/svg.dart';
 
 class MineTabViewPage extends StatefulWidget {
   const MineTabViewPage({Key? key}) : super(key: key);
@@ -62,122 +61,6 @@ class _MineTabViewPageState extends State<MineTabViewPage> {
 
   void registerHandler() {}
 
-  void showMenu() {
-    //iOS
-    showDialog<void>(
-        context: context,
-        useSafeArea: false,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                padding: const EdgeInsets.only(top: 100, right: 30),
-                decoration: BoxDecoration(
-                    color: const Color(0x33000000),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 120,
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "images/main/jinxing.png",
-                                  width: 26,
-                                  height: 26,
-                                  color: const Color(0xff63B4F3),
-                                  fit: BoxFit.contain,
-                                ),
-                                const SizedBox(width: 10),
-                                MyText(
-                                  title: "金星",
-                                  color: Colors.black,
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Container(
-                            height: 1,
-                            width: double.infinity,
-                            color: const Color(0xffeeeeee),
-                          ),
-                          const SizedBox(height: 10),
-                          GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    "images/main/jinxing.png",
-                                    width: 26,
-                                    height: 26,
-                                    color: const Color(0xff63B4F3),
-                                    fit: BoxFit.contain,
-                                  ),
-                                  const SizedBox(width: 10),
-                                  MyText(
-                                    title: "水星",
-                                    color: Colors.black,
-                                  )
-                                ],
-                              )),
-                          const SizedBox(height: 10),
-                          Container(
-                            height: 1,
-                            width: double.infinity,
-                            color: const Color(0xffeeeeee),
-                          ),
-                          const SizedBox(height: 10),
-                          GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                Navigator.of(context).pop();
-                                AppUtil.getTo(const SettingViewPage());
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    "images/main/settingblue.png",
-                                    width: 26,
-                                    height: 26,
-                                    color: const Color(0xff63B4F3),
-                                    fit: BoxFit.contain,
-                                  ),
-                                  const SizedBox(width: 10),
-                                  MyText(
-                                    title: "设置",
-                                    color: Colors.black,
-                                  )
-                                ],
-                              )),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ));
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,372 +75,332 @@ class _MineTabViewPageState extends State<MineTabViewPage> {
           elevation: 0.0,
           toolbarHeight: 0,
         ),
-        backgroundColor: const Color.fromRGBO(240, 240, 240, 1),
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
             // physics: BouncingScrollPhysics(),
             child: Container(
+          padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
           child: Column(
             children: [
-              Stack(children: [
-                Container(
-                  height: MediaQuery.of(context).size.width * 0.6 + 100,
-                  decoration:
-                      BoxDecoration(gradient: AppUtil.getMainLinearGradient()),
-                  padding: EdgeInsets.fromLTRB(
-                      AppUtil.getPadding(),
-                      AppUtil.getPadding() +
-                          MediaQuery.of(context).padding.top +
-                          20,
-                      AppUtil.getPadding(),
-                      20),
-                ),
-                Positioned(
-                    bottom: 100,
-                    left: 0,
-                    right: 0,
-                    child: CustomPaint(
-                        //路径裁切组件
-                        painter: Sky(),
-                        child: Container(
-                          height: 60,
-                        ))),
-                Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(color: Colors.white, height: 100)),
-                Positioned(
-                    bottom: 0,
-                    left: AppUtil.getPadding(),
-                    right: AppUtil.getPadding(),
-                    child: Container(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        height: 160,
-                        child: Column(
+              Row(
+                children: [
+                  Container(
+                    width: 86,
+                    height: 86,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("images/avatar.png"),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(height: 20),
-                                      Text(
-                                        AppUtil.user?.nickname ?? "",
-                                        maxLines: 4,
-                                        textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color.fromRGBO(0, 0, 0, 1)),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "ID:" +
-                                                AppUtil.user!.nickname
-                                                    .toString(),
-                                            style: const TextStyle(
-                                                fontSize: 13,
-                                                color: AppConfig.font3),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(height: 5),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(),
-                              ],
+                            MyText(
+                              title: "蓝蓝蓝",
                             ),
-                            const SizedBox(height: 10),
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              width: double.infinity,
-                              alignment: Alignment.centerLeft,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffF5FAFF),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: MyText(
-                                title: "这个人有点懒，还没有什么值得记录的",
-                                color: AppConfig.font3,
-                              ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Image.asset(
+                              "images/female.png",
+                              width: 10,
+                            ),
+                            SizedBox(width: 20),
+                            MyText(
+                              title: "2025-02-22",
+                            ),
+                            SizedBox(width: 10),
+                            Image.asset(
+                              "images/edit.png",
+                              width: 20,
                             ),
                           ],
-                        ))),
-                Positioned(
-                    right: AppUtil.getPadding() + 10,
-                    top: 60,
-                    child: GestureDetector(
+                        ),
+                        SizedBox(height: 10),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.only(right: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0x3337AFFF),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: MyText(
+                                title: "清纯女大",
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.only(right: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0x33F89D58),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: MyText(
+                                title: "天选牛马",
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.only(right: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0x1AC34DC5),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: MyText(
+                                title: "精致女王",
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.only(right: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0x1AC34DC5),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: MyText(
+                                title: "清纯女大",
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.only(right: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0x1AC34DC5),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Icon(Icons.add),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(color: Color(0xfff7f7f7)),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            MyText(
+                              title: "小蓝的AI Ring",
+                            ),
+                            SizedBox(width: 10),
+                            Image.asset(
+                              "images/edit.png",
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  color: Color(0xff0FBE97),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            SizedBox(width: 10),
+                            MyText(
+                              title: "已连接",
+                              color: Color(0xff999999),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            MyText(
+                              title: "CURV已经陪伴你",
+                            ),
+                            MyText(
+                              title: "500",
+                              fontSize: 30,
+                            ),
+                            MyText(
+                              title: "天了",
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          padding: EdgeInsets.all(10),
+                          child: MyText(
+                            title: "解除绑定",
+                            color: Color(0xff999999),
+                          ),
+                        )
+                      ],
+                    ),
+                    Spacer(),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              "images/dianliang.png",
+                              width: 20,
+                            ),
+                            MyText(
+                              title: "30%",
+                            )
+                          ],
+                        ),
+                        Image.asset(
+                          "images/jiezhi.png",
+                          width: 91,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(color: Color(0xfff7f7f7)),
+                child: Column(
+                  children: [
+                    GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        AppUtil.getTo(const SettingViewPage());
-                      },
-                      child: Image.asset("images/shezhi.png",
-                          width: 35, height: 35, fit: BoxFit.cover),
-                    ))
-              ]),
-              const SizedBox(height: 10),
-              Container(
-                margin: EdgeInsets.fromLTRB(
-                    AppUtil.getPadding(), 10, AppUtil.getPadding(), 0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    showVip
-                        ? GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              AppUtil.getTo(const Fankui());
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(10),
-                                alignment: Alignment.centerLeft,
-                                child: InkWell(
-                                  onTap: () {
-                                    AppUtil.getTo(const VipView());
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    height: 40,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(13),
-                                        gradient: const LinearGradient(
-                                            //渐变位置
-                                            begin: Alignment.bottomLeft, //右上
-                                            end: Alignment.topRight, //左下
-                                            stops: [
-                                              0.0,
-                                              1.0
-                                            ], //[渐变起始点, 渐变结束点]
-                                            //渐变颜色[始点颜色, 结束颜色]
-                                            colors: [
-                                              Color(0xffE9fF3F),
-                                              Color(0xffE9cFFF)
-                                            ])),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          "images/viplogo.png",
-                                          width: 20,
-                                        ),
-                                        const SizedBox(width: 5),
-                                        MyText(
-                                          title: (AppUtil.user!.vipcate == 0 ||
-                                                  AppUtil.user!.vipcate == null)
-                                              ? "开通会员"
-                                              : (AppUtil.user!.vipcate
-                                                      .toString() +
-                                                  "级会员"),
-                                          fontSize: 14,
-                                          weight: (AppUtil.user!.vipcate == 0 ||
-                                                  AppUtil.user!.vipcate == null)
-                                              ? null
-                                              : FontWeight.bold,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )))
-                        : Container(),
-                    showVip
-                        ? GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              AppUtil.getTo(const InputInvitecode());
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Image.asset(
-                                  //   "images/main/jianyue.png",
-                                  //   width: 20,
-                                  //   height: 20,
-                                  // ),
-                                  const SizedBox(width: 5),
-                                  MyText(
-                                    title: "输入邀请码",
-                                  ),
-                                  const Spacer(),
-                                  const Icon(Icons.navigate_next)
-                                ],
-                              ),
-                            ))
-                        : Container(),
-                    GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          AppUtil.getTo(const Fankui());
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Image.asset(
-                              //   "images/main/jianyue.png",
-                              //   width: 20,
-                              //   height: 20,
-                              // ),
-                              const SizedBox(width: 5),
-                              MyText(
-                                title: "意见反馈",
-                              ),
-                              const Spacer(),
-                              const Icon(Icons.navigate_next)
-                            ],
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "images/shoushi.png",
+                            width: 30,
                           ),
-                        )),
-
-                    // Container(height: 1, color: AppConfig.grayBgColor),
-                    // GestureDetector(
-                    //     behavior: HitTestBehavior.opaque,
-                    //     onTap: () {},
-                    //     child: Container(
-                    //       padding: const EdgeInsets.all(10),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           // Image.asset(
-                    //           //   "images/main/jianyue.png",
-                    //           //   width: 20,
-                    //           //   height: 20,
-                    //           // ),
-                    //           const SizedBox(width: 5),
-                    //           MyText(
-                    //             title: "简约模式",
-                    //           ),
-                    //           const Spacer(),
-                    //           const Icon(Icons.navigate_next)
-                    //         ],
-                    //       ),
-                    //     )),
-                    // Container(height: 1, color: AppConfig.grayBgColor),
-                    // GestureDetector(
-                    //     behavior: HitTestBehavior.opaque,
-                    //     onTap: () {},
-                    //     child: Container(
-                    //       padding: const EdgeInsets.all(10),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           // Image.asset(
-                    //           //   "images/main/secai.png",
-                    //           //   width: 20,
-                    //           //   height: 20,
-                    //           // ),
-                    //           const SizedBox(width: 5),
-                    //           MyText(
-                    //             title: "色彩模式",
-                    //           ),
-                    //           const Spacer(),
-                    //           const Icon(Icons.navigate_next)
-                    //         ],
-                    //       ),
-                    //     )),
+                          SizedBox(width: 10),
+                          Expanded(
+                              child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.black))),
+                            child: MyText(
+                              title: "自定义手势",
+                            ),
+                          ))
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "images/book-open.png",
+                            width: 30,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                              child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.black))),
+                            child: MyText(
+                              title: "操作说明",
+                            ),
+                          )),
+                          Icon(
+                            Icons.navigate_next,
+                            color: Color(0xff999999),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "images/question.png",
+                            width: 30,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                              child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.black))),
+                            child: MyText(
+                              title: "问题反馈",
+                            ),
+                          )),
+                          Icon(
+                            Icons.navigate_next,
+                            color: Color(0xff999999),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "images/info.png",
+                            width: 30,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                              child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.black))),
+                            child: MyText(
+                              title: "关于CURV",
+                            ),
+                          )),
+                          Icon(
+                            Icons.navigate_next,
+                            color: Color(0xff999999),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 20),
               Container(
-                padding: const EdgeInsets.all(0),
-                margin: AppUtil.getCommonPadding(),
+                width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Container(height: 1, color: AppConfig.grayBgColor),
-                    GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          String url = Uri.encodeComponent(
-                              "https://www.xiaowanwu.cn/safe/mysecret");
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Image.asset(
-                              //   "images/main/shouji.png",
-                              //   width: 20,
-                              //   height: 20,
-                              // ),
-                              const SizedBox(width: 5),
-                              MyText(title: "隐私政策"),
-                              const Spacer(),
-                              const Icon(Icons.navigate_next)
-                            ],
-                          ),
-                        )),
-                    Container(height: 1, color: AppConfig.grayBgColor),
-                    GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          AppUtil.getTo(const WithUs());
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Image.asset(
-                              //   "images/main/guanyu.png",
-                              //   width: 20,
-                              //   height: 20,
-                              // ),
-                              const SizedBox(width: 5),
-                              MyText(title: "关于我们"),
-                              const Spacer(),
-                              const Icon(Icons.navigate_next)
-                            ],
-                          ),
-                        )),
-                    GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () {
-                          AppUtil.getTo(const ContactUs());
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Image.asset(
-                              //   "images/main/guanyu.png",
-                              //   width: 20,
-                              //   height: 20,
-                              // ),
-                              const SizedBox(width: 5),
-                              MyText(title: "联系我们"),
-                              const Spacer(),
-                              const Icon(Icons.navigate_next)
-                            ],
-                          ),
-                        )),
-                  ],
+                    color: Color(0xffF7F7F7),
+                    borderRadius: BorderRadius.circular(5)),
+                padding: EdgeInsets.all(10),
+                child: MyText(
+                  title: "退出登录",
+                  color: Color(0xff999999),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const SizedBox(height: 20),
+              )
             ],
           ),
         )));

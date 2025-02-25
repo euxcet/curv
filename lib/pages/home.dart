@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:curv/pages/tabs/activeTabView.dart';
+import 'package:curv/pages/tabs/dataTabView.dart';
 import 'package:flutter/material.dart';
 import 'package:curv/pages/socket/scoketClient.dart';
 import 'package:curv/pages/tabs/homeTabView.dart';
@@ -149,7 +151,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(), // 禁止左右滑动切换页面
               controller: _pageController,
-              children: [HomeTabViewPage(), MineTabViewPage()],
+              children: [
+                HomeTabViewPage(),
+                ActiveTabView(),
+                DataTabView(),
+                MineTabViewPage()
+              ],
             ),
           ),
           !isKeyboardOpen
@@ -166,23 +173,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         flex: 1,
                         child: GestureDetector(
                           onTap: () async {
-                            if (index == 1 || index == 4) {
-                              if (!AppUtil.isLogin(context)) {
-                                return;
-                              }
-                            }
                             _currentIndex = index;
                             _pageController.jumpToPage(index);
                             setState(() {});
-                            if (index != 3) {
-                              if (AppUtil.videoPlayerController != null) {
-                                AppUtil.videoPlayerController!.pause();
-                              }
-                            } else {
-                              if (AppUtil.videoPlayerController != null) {
-                                AppUtil.videoPlayerController!.play();
-                              }
-                            }
                           },
                           behavior: HitTestBehavior.opaque,
                           child: Container(

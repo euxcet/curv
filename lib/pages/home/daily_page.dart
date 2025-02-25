@@ -1,6 +1,5 @@
 import 'package:curv/pages/home/curv_document.dart';
 import 'package:curv/pages/home/curv_run_item.dart';
-import 'package:curv/pages/home/daily_page.dart';
 import 'package:curv/pages/user/loginHomeView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,14 +15,14 @@ import 'package:curv/tools/event_bus.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class HomeTabViewPage extends StatefulWidget {
-  const HomeTabViewPage({Key? key}) : super(key: key);
+class DaylyPage extends StatefulWidget {
+  const DaylyPage({Key? key}) : super(key: key);
 
   @override
-  _HomeTabViewPageState createState() => _HomeTabViewPageState();
+  _DaylyPageState createState() => _DaylyPageState();
 }
 
-class _HomeTabViewPageState extends State<HomeTabViewPage>
+class _DaylyPageState extends State<DaylyPage>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   var list = [
     {
@@ -105,106 +104,25 @@ class _HomeTabViewPageState extends State<HomeTabViewPage>
         80;
 
     return Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.light
+          systemOverlayStyle: SystemUiOverlayStyle.dark
               .copyWith(statusBarColor: Colors.transparent),
           // title: Text(user != null ? user["nickname"] : "",style:TextStyle(color: Colors.white),),
           centerTitle: true,
           elevation: 0.0,
-          toolbarHeight: 0,
+          toolbarHeight: 50,
+          title: MyText(
+            title: "CURV日记",
+          ),
         ),
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images/scan.png"), fit: BoxFit.cover),
-          ),
           child: Column(
             children: [
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 50),
-                        Row(
-                          children: [
-                            Image.asset(
-                              "images/sun.png",
-                              width: 20,
-                              height: 20,
-                            ),
-                            SizedBox(width: 10),
-                            MyText(
-                              title: "紫外线较强",
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        MyText(
-                          title: "CURV，美一刻",
-                          color: Colors.white,
-                          fontSize: 26,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 20),
-                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    decoration: BoxDecoration(
-                      color: Color(0x4d000000),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(5),
-                          bottomRight: Radius.circular(5)),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "images/jiezhi.png",
-                          width: 26,
-                          height: 28,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            MyText(
-                              title: "connected",
-                              color: Colors.white,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset(
-                                  "images/power.png",
-                                  width: 17,
-                                  height: 8,
-                                ),
-                                MyText(
-                                  title: "30%",
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 20),
               Row(
                 children: [
@@ -245,36 +163,31 @@ class _HomeTabViewPageState extends State<HomeTabViewPage>
                     width: 20,
                   ),
                   Expanded(
-                      child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTap: () {
-                            AppUtil.getTo(DaylyPage());
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(right: 20),
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                            decoration: BoxDecoration(
-                                color: Color(0xFFFFFFCC),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "images/sun.png",
-                                  width: 20,
-                                  height: 20,
-                                ),
-                                Column(
-                                  children: [
-                                    MyText(title: "CURV日记"),
-                                    MyText(
-                                      title: "你的精致日记",
-                                      color: Color(0xff999999),
-                                    ),
-                                  ],
-                                )
-                              ],
+                      child: Container(
+                    margin: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    decoration: BoxDecoration(
+                        color: Color(0xFFFFFFCC),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "images/sun.png",
+                          width: 20,
+                          height: 20,
+                        ),
+                        Column(
+                          children: [
+                            MyText(title: "CURV日记"),
+                            MyText(
+                              title: "你的精致日记",
+                              color: Color(0xff999999),
                             ),
-                          )))
+                          ],
+                        )
+                      ],
+                    ),
+                  ))
                 ],
               ),
               SizedBox(height: 20),

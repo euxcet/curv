@@ -21,7 +21,7 @@ class MyButton extends StatelessWidget {
       this.backgroundColor = 0xffA59DFF,
       this.fontSize = 18,
       this.onTap,
-      this.radius = 20,
+      this.radius = 0,
       this.width = 100,
       this.height = 36,
       this.fontWeight = FontWeight.normal,
@@ -71,7 +71,9 @@ class MyButton extends StatelessWidget {
                     width: width,
                     height: height,
                     alignment: Alignment.center,
-                    decoration: AppUtil.getMainButtonDecoration(),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(0)),
                     child: Text(
                       title ?? "",
                       style: TextStyle(
