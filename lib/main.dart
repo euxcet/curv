@@ -10,15 +10,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'common/color.dart';
 
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:fluwx/fluwx.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   AppConfig.init();
 
   runApp(const MyApp());
-  registerWxApi(
-      appId: AppConfig.WXAppId, universalLink: AppConfig.UniversalLink);
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark.copyWith(

@@ -8,7 +8,6 @@ import 'package:curv/tools/AppUtil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 
 class UserCenterViewPage extends StatefulWidget {
   final String? id;
@@ -87,18 +86,6 @@ class _UserCenterViewPageState extends State<UserCenterViewPage>
     });
   }
 
-  void share() {
-    /// 分享到好友
-    var model = fluwx.WeChatShareWebPageModel(
-      "https://www.xiaowanwu.cn/games/#/",
-      title: "这里的画师很高级-欢迎体验ai绘画",
-      thumbnail:
-          fluwx.WeChatImage.network("https://u.xiaowanwu.cn/logo216.png"),
-      scene: fluwx.WeChatScene.SESSION,
-    );
-    fluwx.shareToWeChat(model);
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -126,16 +113,6 @@ class _UserCenterViewPageState extends State<UserCenterViewPage>
         ),
         actions: <Widget>[
           //导航栏右侧菜单
-          IconButton(
-              icon: Icon(
-                Icons.more_horiz,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                AppUtil.showMorePop(context, share: share, notInterested: () {
-                  AppUtil.back();
-                });
-              }),
         ],
       ),
       body: Container(

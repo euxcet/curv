@@ -21,7 +21,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import 'package:curv/models/user.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 import 'package:video_player/video_player.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
@@ -252,17 +251,6 @@ class AppUtil {
                                 behavior: HitTestBehavior.opaque,
                                 onTap: () async {
                                   /// 分享到好友
-                                  var model = fluwx.WeChatShareWebPageModel(
-                                    "https://www.xiaowanwu.cn/games/#/",
-                                    title: "邀请码:" +
-                                        invitecode +
-                                        "邀请您进入AI原宇宙,写作、翻译、写程序、汇报、生活...," +
-                                        invitecode,
-                                    thumbnail: fluwx.WeChatImage.network(
-                                        "https://u.xiaowanwu.cn/logo216.png"),
-                                    scene: fluwx.WeChatScene.SESSION,
-                                  );
-                                  fluwx.shareToWeChat(model);
                                 },
                                 child: Container(
                                   height: 40,

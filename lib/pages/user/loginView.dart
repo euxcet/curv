@@ -12,7 +12,6 @@ import 'package:curv/tools/storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fluwx/fluwx.dart' as fluwx;
 
 class LoginViewPage extends StatefulWidget {
   const LoginViewPage({Key? key}) : super(key: key);
@@ -51,51 +50,15 @@ class _LoginViewPageState extends State<LoginViewPage> {
 
     _focusNodeUserName.addListener(_focusNodeListener);
     _focusNodePassWord.addListener(_focusNodeListener);
-
-    fluwx.weChatResponseEventHandler.distinct((a, b) => a == b).listen((res) {
-      if (res is fluwx.WeChatAuthResponse) {
-        int errCode = res.errCode;
-        print('微信登录返回值：ErrCode :$errCode  code:${res.code}');
-        if (errCode == 0) {
-          String? code = res.code;
-          EasyLoading.show();
-          ApiService.loginByWeixin(code).then((value) {
-            StorageUtil.saveUser(value);
-            EasyLoading.dismiss();
-            AppUtil.getTo(HomePage());
-            // ApiServic
-            Message.info("微信授权成功");
-          }).catchError((e) {
-            Message.error("登录错误");
-          });
-        } else if (errCode == -4) {
-          Message.info("用户拒绝授权");
-        } else if (errCode == -2) {
-          Message.info("用户取消授权");
-        }
-      }
-    });
   }
 
-  void initFlux() async {
-    var result = await fluwx.isWeChatInstalled;
-    setState(() {
-      isWechatInstalled = result;
-    });
-  }
+  void initFlux() async {}
 
   void wechatLoginClick() {
     if (!_checkAgreement) {
       Message.info("请阅读并同意用户协议");
       return;
     }
-    fluwx
-        .sendWeChatAuth(scope: "snsapi_userinfo", state: "wechat_sdk_demo_test")
-        .then((data) {
-      if (!data) {
-        Message.info('没有安装微信，请安装微信后使用该功能');
-      }
-    });
   }
 
   @override

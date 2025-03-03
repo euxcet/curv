@@ -341,14 +341,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  fluwx:
-    dependency: "direct main"
-    description:
-      name: fluwx
-      sha256: e54837349819d51261be00692071db43fc1ff79dd06cf3a50175a5940249691e
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.9.0+2"
   get:
     dependency: "direct main"
     description:

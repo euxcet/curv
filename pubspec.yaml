@@ -55,7 +55,6 @@ dependencies:
   flutter_displaymode: ^0.3.2
   wechat_assets_picker: ^8.5.0
   qiniu_flutter_sdk: 
-  fluwx: 3.9.0+2
   keframe: ^3.0.0
   socket_io_client: ^2.0.0
   # webview_flutter_plus: ^0.3.0+2
